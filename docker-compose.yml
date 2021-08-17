@@ -1,0 +1,78 @@
+version: "3.9"
+services:
+  dns-dmz:
+    image: "internetsystemsconsortium/bind9:9.16"
+    hostname: "dns"
+    domainname: "woodytoys.domaineprojetadmin.ovh"
+    volumes: 
+      - "./dns/public/named.conf:/etc/bind/named.conf"
+      - "./dns/public/zones/:/etc/bind/zones/"
+      - "./dns/public/named.conf.local:/etc/bind/named.conf.local"
+      - "./dns/public/named.conf.options:/etc/bind/named.conf.options"
+    networks: 
+      dmz: 
+        ipv4_address: "172.17.3.1"
+  voip-dmz:
+    image: "andrius/asterisk"
+    hostname: "voip"
+    domainname: "woodytoys.domaineprojetadmin.ovh"
+    networks: 
+      dmz: 
+        ipv4_address: "172.17.3.2"
+  web-dmz:
+    image: "php:7.2-apache"
+    hostname: "web"
+    domainname: "woodytoys.domaineprojetadmin.ovh"
+    networks: 
+      dmz: 
+        ipv4_address: "172.17.3.3"
+      internal-servers:
+  smtp-dmz: 
+    image: "mailserver/docker-mailserver"
+    hostname: "smtp"
+    domainname: "woodytoys.domaineprojetadmin.ovh"
+    networks: 
+      dmz: 
+        ipv4_address: "172.17.3.4"
+  dns-internal:
+    image: "internetsystemsconsortium/bind9:9.16"
+    networks: 
+      internal-servers: 
+        ipv4_address: "172.17.1.2"
+  resolver-internal:
+    image: "internetsystemsconsortium/bind9:9.16"
+     networks: 
+      internal-servers: 
+        ipv4_address: "172.17.1.1"
+  #ERP-internal:
+  db-internal: 
+    image: "mariadb"
+    networks: 
+      internal-servers: 
+        ipv4_address: "172.17.1.4"
+    
+  pc-direction:
+    image: "ubuntu"
+    networks: 
+      internal-computers: 
+        ipv4_address: "192.168.0.1"
+      internal-servers:
+  pc-secretariat:
+    image: "ubuntu"
+    networks: 
+      internal-computers: 
+        ipv4_address: "192.168.0.2"
+      internal-servers:
+networks:
+  dmz:
+    ipam:
+      config:
+        - subnet: "172.17.3.0/24"
+  internal-servers:
+    ipam:
+      config:
+        - subnet: "172.17.1.0/24"
+  internal-computers:
+    ipam:
+      config:
+        - subnet: "192.168.0.0/16"
