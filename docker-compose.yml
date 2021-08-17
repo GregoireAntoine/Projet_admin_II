@@ -11,21 +11,21 @@ services:
       - "./dns/public/named.conf.options:/etc/bind/named.conf.options"
     networks: 
       dmz: 
-        ipv4_address: "172.18.3.1"
+        ipv4_address: "172.18.3.2"
   voip-dmz:
     image: "andrius/asterisk"
     hostname: "voip"
     domainname: "woodytoys.domaineprojetadmin.ovh"
     networks: 
       dmz: 
-        ipv4_address: "172.18.3.2"
+        ipv4_address: "172.18.3.3"
   web-dmz:
     image: "php:7.2-apache"
     hostname: "web"
     domainname: "woodytoys.domaineprojetadmin.ovh"
     networks: 
       dmz: 
-        ipv4_address: "172.18.3.3"
+        ipv4_address: "172.18.3.4"
       internal-servers:
   smtp-dmz: 
     image: "mailserver/docker-mailserver"
@@ -33,17 +33,17 @@ services:
     domainname: "woodytoys.domaineprojetadmin.ovh"
     networks: 
       dmz: 
-        ipv4_address: "172.18.3.4"
+        ipv4_address: "172.18.3.5"
   dns-internal:
     image: "internetsystemsconsortium/bind9:9.16"
     networks: 
       internal-servers: 
-        ipv4_address: "172.18.1.2"
+        ipv4_address: "172.18.1.3"
   resolver-internal:
     image: "internetsystemsconsortium/bind9:9.16"
     networks: 
       internal-servers: 
-        ipv4_address: "172.18.1.1"
+        ipv4_address: "172.18.1.2"
   #ERP-internal:
   db-internal: 
     image: "mariadb"
@@ -55,13 +55,13 @@ services:
     image: "ubuntu"
     networks: 
       internal-computers: 
-        ipv4_address: "192.168.0.1"
+        ipv4_address: "192.168.0.2"
       internal-servers:
   pc-secretariat:
     image: "ubuntu"
     networks: 
       internal-computers: 
-        ipv4_address: "192.168.0.2"
+        ipv4_address: "192.168.0.3"
       internal-servers:
 networks:
   dmz:
