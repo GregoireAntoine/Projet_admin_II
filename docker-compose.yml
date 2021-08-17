@@ -26,6 +26,11 @@ services:
     image: "php:7.2-apache"
     hostname: "web"
     domainname: "woodytoys.domaineprojetadmin.ovh"
+    volumes: 
+      - "./web/conf/sites-available/:/etc/apache2/sites-enabled"
+      - "./web/www/:/var/www/woodtoys.com/"
+    ports: 
+      - "80:80"
     networks: 
       dmz: 
         ipv4_address: "172.18.3.4"
