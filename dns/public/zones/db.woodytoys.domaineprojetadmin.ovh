@@ -10,7 +10,7 @@ $TTL	3600
 
 
 
-woodytoys.domaineprojetadmin.ovh      IN      NS      ns.woodytoys.domaineprojetadmin.ovh
+    IN      NS      ns.woodytoys.domaineprojetadmin.ovh
 
 
 
