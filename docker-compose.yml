@@ -36,9 +36,29 @@ services:
         ipv4_address: "172.18.3.4"
       internal-servers:
   smtp-dmz: 
-    image: "mailserver/docker-mailserver"
+    image: "mailserver/docker-mailserver:edge"
     hostname: "smtp"
     domainname: "woodytoys.domaineprojetadmin.ovh"
+    container_name: mailserver
+    env_file: mail/mailserver.env
+    # To avoid conflicts with yaml base-60 float, DO NOT remove the quotation marks.
+    # More information about the mailserver ports:
+    # https://docker-mailserver.github.io/docker-mailserver/edge/config/security/understanding-the-ports/
+    ports:
+      - "25:25"    # SMTP  (explicit TLS => STARTTLS)
+      - "143:143"  # IMAP4 (explicit TLS => STARTTLS)
+      - "465:465"  # ESMTP (implicit TLS)
+      - "587:587"  # ESMTP (explicit TLS => STARTTLS)
+      - "993:993"  # IMAP4 (implicit TLS)
+    volumes:
+      - ./data/maildata:/var/mail
+      - ./data/mailstate:/var/mail-state
+      - ./data/maillogs:/var/log/mail
+      - /etc/localtime:/etc/localtime:ro
+      - ./config/:/tmp/docker-mailserver/
+    restart: always
+    stop_grace_period: 1m
+    cap_add: [ "NET_ADMIN", "SYS_PTRACE" ]
     networks: 
       dmz: 
         ipv4_address: "172.18.3.5"
