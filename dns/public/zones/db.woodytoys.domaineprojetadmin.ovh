@@ -1,6 +1,6 @@
 $ORIGIN woodytoys.domaineprojetadmin.ovh.
 $TTL	3600
-@	    IN	    SOA	    ns.woodytoys.domaineprojetadmin.ovh   root.woodytoys.domaineprojetadmin.ovh (
+@	    IN	    SOA	    ns.woodytoys.domaineprojetadmin.ovh.   root.woodytoys.domaineprojetadmin.ovh. (
 
 		    1	        ; Serial
 			3600		; Refresh
