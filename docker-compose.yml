@@ -23,7 +23,8 @@ services:
       dmz: 
         ipv4_address: "172.18.3.3"
   web-dmz:
-    image: "php:7.2-apache"
+    image: "admin/php:7.2"
+    build: "./web"
     hostname: "web"
     domainname: "woodytoys.domaineprojetadmin.ovh"
     volumes: 
