@@ -1,6 +1,6 @@
 $ORIGIN woodytoys.internal
 $TTL	3600
-@	    IN	    SOA	    ns.woodytoys.internal   root.woodytoys.internal (
+@	    IN	    SOA	    ns.woodytoys.internal.   root.woodytoys.internal. (
 
 		    1	        ; Serial
 			3600		; Refresh
