@@ -137,6 +137,7 @@ services:
       internal-computers: 
         ipv4_address: "192.168.0.2"
       internal-servers:
+      dmz:
   pc-secretariat:
     image: "ubuntu"
     dns: "172.18.1.5"
@@ -144,6 +145,7 @@ services:
       internal-computers: 
         ipv4_address: "192.168.0.3"
       internal-servers:
+      dmz:
 networks:
   dmz:
     ipam:
