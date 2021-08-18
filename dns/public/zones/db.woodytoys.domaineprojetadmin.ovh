@@ -13,7 +13,7 @@ $TTL	3600
     IN      NS      ns.woodytoys.domaineprojetadmin.ovh.
 
 
-			IN	A	164.132.56.239;
+woodytoys.domaineprojetadmin.ovh.			IN	A	164.132.56.239;
 ns			IN	A	164.132.56.239;
 
 b2b			IN	A	164.132.56.239;
