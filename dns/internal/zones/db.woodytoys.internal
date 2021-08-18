@@ -10,7 +10,7 @@ $TTL	3600
 
 
 
-woodytoys.internal      IN      NS      ns.woodytoys.internal
+			IN      NS      ns.woodytoys.internal.
 
 
 
